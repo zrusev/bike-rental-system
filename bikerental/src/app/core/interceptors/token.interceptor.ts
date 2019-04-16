@@ -5,7 +5,7 @@ import {
     HttpEvent,
     HttpInterceptor
  } from '@angular/common/http';
-import { APP_KEY, APP_SECRET } from 'src/app/kinvey.tokens';
+import { APP_KEY, APP_SECRET } from '../../kinvey.tokens';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { tap } from 'rxjs/operators';
