@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   signIn(body: Object) {
-    return this.http.post(`${this.BASE_URL}/login`, body);
+    return this.http.post(`${this.BASE_URL}/signin`, body);
   }
 
   logout() {
