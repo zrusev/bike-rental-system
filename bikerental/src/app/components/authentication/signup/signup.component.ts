@@ -10,6 +10,9 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupComponent{
   @ViewChild('registerForm') registerForm: NgForm;
+  passPattern = /^.*(?=.{6,10})(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9!@#$%]+$/;
+// tslint:disable-next-line: max-line-length
+  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(
     private authService: AuthService,
@@ -17,11 +20,16 @@ export class SignupComponent{
   ) { }
 
   signUp() {
+    const form = this.registerForm.value;
+    const formVal = Object.assign(this.registerForm.value, {
+      name: `${form.firstname} ${form.lastname}`,
+      email: form.username
+    });
+
     this.authService
-      .signUp(this.registerForm.value)
+      .signUp(formVal)
       .subscribe((data) => {
-        console.log(data);
-        this.router.navigate([ '/signin' ]);
+        this.router.navigate([ '/' ]);
       });
   }
 }

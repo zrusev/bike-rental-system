@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        if (req.url.endsWith(`/user/${APP_KEY}`) || req.url.endsWith('signin')) {
+        if (req.url.endsWith(`/user/${APP_KEY}`) || req.url.endsWith('login')) {
             req = req.clone({
                 setHeaders: {
                     'Authorization': `Basic ${btoa(`${APP_KEY}:${APP_SECRET}`)}`,
@@ -35,7 +35,9 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         return next.handle(req)
             .pipe(tap((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse && req.url.endsWith('signin')) {
+                if ((event instanceof HttpResponse && req.url.endsWith('login')) ||
+                    (event instanceof HttpResponse && req.url.indexOf('/user') > -1)
+                ) {
                     this.toastr.success('Successfully registered!', 'Success');
                     this.authService.saveUserInfo(event.body);
                 }

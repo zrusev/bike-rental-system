@@ -1,33 +1,75 @@
-<div class="container">
-  <h1>Sign Up</h1>
-  <form (ngSubmit)="signUp()" #registerForm="ngForm">
+<form (ngSubmit)="signUp()" #registerForm="ngForm">
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required ngModel #name="ngModel" name="name">
-
-      <div *ngIf="name.invalid && name.touched" class="alert alert-dark">
-        Please provide your name!
+      <label for="username">E-mail</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="username" 
+        required 
+        ngModel 
+        #username="ngModel" 
+        name="username" 
+        [pattern]="emailPattern"
+      >
+  
+      <div *ngIf="username?.invalid && username?.touched" class="alert alert-danger">
+        Please provide a correct e-mail address!
       </div>
     </div>
-
+  
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" required email ngModel #email="ngModel" name="email">
-
-      <div *ngIf="email.invalid && email.touched" class="alert alert-dark">
-        Please provide a correct email address!
+      <label for="firstname">First name</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="firstname" 
+        required 
+        ngModel 
+        #firstname="ngModel" 
+        name="firstname"
+      >
+  
+      <div *ngIf="firstname?.invalid && firstname?.touched" class="alert alert-danger">
+        Please provide your first name!
       </div>
     </div>
-
+  
+    <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="lastname" 
+          required 
+          ngModel 
+          #lastname="ngModel" 
+          name="lastname"
+        >
+    
+        <div *ngIf="lastname?.invalid && lastname?.touched" class="alert alert-danger">
+          Please provide your last name!
+        </div>
+      </div>
+  
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" required ngModel #password="ngModel" name="password"
-        minlength="4">
-
-      <div *ngIf="password.invalid && password.touched" class="alert alert-dark">
-        Password must have at least 4 characters!
+      <input 
+        type="password" 
+        class="form-control" 
+        id="password" 
+        required 
+        ngModel 
+        #password="ngModel" 
+        name="password"
+        [pattern]="passPattern"
+      >
+  
+      <div *ngIf="password?.value?.length < 6 && password?.touched" class="alert alert-danger">
+        Password must have at least 6 characters!
+      </div>
+      <div *ngIf="password?.invalid && password?.touched" class="alert alert-danger">
+        Password must have at least 1 number and no spaces!
       </div>
     </div>
     <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid">Sign Up</button>
   </form>
-</div>
