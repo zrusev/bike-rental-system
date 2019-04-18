@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { SigninComponent } from './components/authentication/signin/signin.compo
 import { SignupComponent } from './components/authentication/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { SeedService } from './core/services/seed.service';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,14 @@ import { HomeComponent } from './components/home/home.component';
     NgbModule,
     ToastrModule.forRoot()
   ],
-  providers: [{
+  providers: [SeedService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
+    multi: true
+  }, {
+    provide: APP_INITIALIZER,
+    useFactory: (ss: SeedService) => function() {return  ss.load(); },
+    deps: [SeedService],
     multi: true
   }],
   bootstrap: [AppComponent]

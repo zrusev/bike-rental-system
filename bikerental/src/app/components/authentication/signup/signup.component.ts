@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent{
+export class SignupComponent {
   @ViewChild('registerForm') registerForm: NgForm;
   passPattern = /^.*(?=.{6,10})(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9!@#$%]+$/;
 // tslint:disable-next-line: max-line-length
@@ -23,7 +23,8 @@ export class SignupComponent{
     const form = this.registerForm.value;
     const formVal = Object.assign(this.registerForm.value, {
       name: `${form.firstname} ${form.lastname}`,
-      email: form.username
+      email: form.username,
+      roles: ['User']
     });
 
     this.authService
