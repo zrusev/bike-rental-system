@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,7 @@ export class SignupComponent {
 
   constructor(
     private authService: AuthService,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -29,7 +31,9 @@ export class SignupComponent {
 
     this.authService
       .signUp(formVal)
-      .subscribe((data) => {
+      .subscribe((res: any) => {
+        this.authService.saveUserInfo(res);
+        this.toastr.success(`${res.name}: successfully signed up!`, 'Success');
         this.router.navigate([ '/' ]);
       });
   }

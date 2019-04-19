@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements DoCheck {
+  username: string = '';
+  isLoggedIn: boolean;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  ngDoCheck() {
+    this.username = localStorage.getItem('username');
+    this.isLoggedIn = this.authService.isAuthenticated();
   }
 
+  logout() {
+    this.authService.logout()
+      .subscribe(() => {
+        localStorage.clear();
+        this.toastr.success('Successfully signed out!', 'Success');
+        this.router.navigate([ '/' ]);
+    });
+  }
 }

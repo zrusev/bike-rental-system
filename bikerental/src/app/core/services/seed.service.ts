@@ -14,6 +14,7 @@ export class SeedService {
             this.authService.signUp({
               email: 'admin@admin.com',
               username: 'admin@admin.com',
+              password: 'admin',
               firstname: 'Admin',
               lastname: 'Admin',
               name: 'Admin Admin',

@@ -1,20 +1,22 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 offset-sm-8">
-      <ngb-tabset>
-        <ngb-tab>
-          <ng-template ngbTabTitle><b>Sign in</b></ng-template>
-          <ng-template ngbTabContent>
-            <app-signin></app-signin>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab>
-          <ng-template ngbTabTitle><b>Sign up</b></ng-template>
-          <ng-template ngbTabContent>
-            <app-signup></app-signup>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+      <div *ngIf="!isLoggedIn">
+        <ngb-tabset>
+          <ngb-tab>
+            <ng-template ngbTabTitle><b>Sign in</b></ng-template>
+            <ng-template ngbTabContent>
+              <app-signin></app-signin>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle><b>Sign up</b></ng-template>
+            <ng-template ngbTabContent>
+              <app-signup></app-signup>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
     </div>
   </div>
 </div>

@@ -1,22 +1,15 @@
 import {
-    HttpResponse,
     HttpRequest,
     HttpHandler,
-    HttpEvent,
     HttpInterceptor
  } from '@angular/common/http';
 import { APP_KEY, APP_SECRET, APP_MASTER_SECRET } from '../../kinvey.tokens';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { tap } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(
-        private authService: AuthService,
-        private toastr: ToastrService
-    ) {}
+    constructor(private authService: AuthService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         if(req.method === 'GET' && req.url.endsWith(`/user/${APP_KEY}`)) {
@@ -40,16 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
                 }
             });
         }
-        return next.handle(req)
-            .pipe(tap((event: HttpEvent<any>) => {
-                if (req.method === 'GET' && req.url.endsWith(`/user/${APP_KEY}`)) {
-
-                } else if ((event instanceof HttpResponse && req.url.endsWith('login')) ||
-                    (event instanceof HttpResponse && req.url.indexOf('/user') > -1)
-                ) {
-                    this.toastr.success('Successfully registered!', 'Success');
-                    this.authService.saveUserInfo(event.body);
-                }
-            }));
+        return next.handle(req);
     }
 }
