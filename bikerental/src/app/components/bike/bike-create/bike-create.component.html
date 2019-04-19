@@ -1,1 +1,10 @@
-testvam si
+<div class="container">
+        <div class="row">
+            <span>{{coordinates?.lat}} {{coordinates?.lng}}</span>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-google-map (markerClicked)="onMarked($event)"></app-google-map>
+            </div>
+        </div>
+</div>
