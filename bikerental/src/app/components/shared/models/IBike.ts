@@ -1,6 +1,5 @@
 export interface IBike {
     name: string;
-    price: number;
     description: string;
     imageUrl: string;
     lat: number;
