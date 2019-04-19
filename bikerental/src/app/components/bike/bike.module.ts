@@ -6,6 +6,7 @@ import { BikeRoutingModule } from './bike-routing.module';
 import { BikeDetailsComponent } from './bike-details/bike-details.component';
 import { GoogleMapComponent } from './bike-maps/google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { API_MAPS_KEY } from 'src/app/kinvey.tokens';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,7 @@ import { AgmCoreModule } from '@agm/core';
         FormsModule,
         BikeRoutingModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBXhC9oLXM65vcnuEyIoQ11cgaAUc7n_iI'
+            apiKey: API_MAPS_KEY
         })
     ],
     exports: []

@@ -1,9 +1,10 @@
+import { ICoords } from './ICoords';
+
 export interface IBike {
     name: string;
     description: string;
     imageUrl: string;
-    lat: number;
-    lng: number;
+    coords: ICoords;
     author: string;
     _acl: { creator: string };
 }
