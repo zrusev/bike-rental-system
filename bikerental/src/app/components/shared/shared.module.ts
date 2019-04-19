@@ -4,18 +4,18 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
-import { BikeModule } from '../bike/bike.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     declarations: [
     HeaderComponent,
     ContentComponent,
     FooterComponent,
+    NotFoundComponent,
 ],
     imports: [
         CommonModule,
-        RouterModule,
-        BikeModule
+        RouterModule
     ],
     exports: [
     HeaderComponent,

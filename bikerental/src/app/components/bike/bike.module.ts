@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BikeCreateComponent } from './bike-create/bike-create.component';
+import { BikeRoutingModule } from './bike-routing.module';
+import { BikeDetailsComponent } from './bike-details/bike-details.component';
 
 @NgModule({
     declarations: [
-        BikeCreateComponent
+        BikeCreateComponent,
+        BikeDetailsComponent
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        BikeRoutingModule
     ],
-    exports: [
-        BikeCreateComponent
-    ]
+    exports: []
 })
-export class BikeModule {}
+export class BikeModule { }

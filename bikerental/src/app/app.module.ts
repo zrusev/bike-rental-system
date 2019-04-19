@@ -39,7 +39,7 @@ import { SeedService } from './core/services/seed.service';
     multi: true
   }, {
     provide: APP_INITIALIZER,
-    useFactory: (ss: SeedService) => function() {return  ss.load(); },
+    useFactory: (ss: SeedService) => () =>  ss.load(),
     deps: [SeedService],
     multi: true
   }],
