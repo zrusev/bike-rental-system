@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CREATE_BIKE_URL, ALL_BIKES } from '../../kinvey.tokens';
+import { CREATE_BIKE_URL, ALL_BIKES, BASE_USER_URL } from '../../kinvey.tokens';
 import { IBike } from 'src/app/components/shared/models/IBike';
+import { IAuthor } from 'src/app/components/shared/models/IAuthor';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,15 @@ export class BikeService {
     return this.http.get<IBike[]>(ALL_BIKES);
   }
 
+  getById(id: string) {
+    return this.http.get<IBike>(CREATE_BIKE_URL + `/${id}`);
+  }
+
   createBike(body: Object) {
     return this.http.post(CREATE_BIKE_URL, body);
+  }
+
+  getAuthor(id: string) {
+    return this.http.get<IAuthor>(BASE_USER_URL + `?query={"_id":"${id}"}`);
   }
 }

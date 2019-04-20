@@ -5,22 +5,22 @@ import { AuthService } from './auth.service';
 export class SeedService {
   constructor(private authService: AuthService) { }
 
-  load(): Promise<any> {
+  seedAdmin(): Promise<any> {
       return this.authService
-      .getUsers()
-      .toPromise()
-      .then((data: any[]) => {
-        if (!data.length) {
-            this.authService.signUp({
-              email: 'admin@admin.com',
-              username: 'admin@admin.com',
-              password: 'admin',
-              firstname: 'Admin',
-              lastname: 'Admin',
-              name: 'Admin Admin',
-              roles: ['Admin']
-            }).subscribe();
-        }
+        .getUsers()
+        .toPromise()
+        .then((data: any[]) => {
+          if (!data.length) {
+              this.authService.signUp({
+                email: 'admin@admin.com',
+                username: 'admin@admin.com',
+                password: 'admin',
+                firstname: 'Admin',
+                lastname: 'Admin',
+                name: 'Admin Admin',
+                roles: ['Admin']
+              }).subscribe();
+          }
     });
   }
 }

@@ -5,9 +5,10 @@ import { BikeDetailsComponent } from './bike-details/bike-details.component';
 import { BikeAllComponent } from './bike-all/bike-all.component';
 
 const routes: Route[] = [
+    { path: '', redirectTo: 'all' },
     { path: 'all', component: BikeAllComponent },
     { path: 'create', component: BikeCreateComponent },
-    { path: 'details', component: BikeDetailsComponent }
+    { path: 'details/:id', component: BikeDetailsComponent }
 ];
 
 @NgModule({

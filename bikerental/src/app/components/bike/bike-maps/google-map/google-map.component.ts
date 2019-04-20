@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { ICoords } from 'src/app/components/shared/models/ICoords';
 
 @Component({
@@ -8,8 +8,8 @@ import { ICoords } from 'src/app/components/shared/models/ICoords';
 })
 export class GoogleMapComponent {
   zoom: number = 15;
-  lat: number = 42.6978634;
-  lng: number = 23.3221789;
+  @Input() lat: number = 42.6978634;
+  @Input() lng: number = 23.3221789;
 
   @Output() markerClicked = new EventEmitter<ICoords>();
 

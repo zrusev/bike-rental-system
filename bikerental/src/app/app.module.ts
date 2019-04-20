@@ -40,12 +40,13 @@ import { SeedService } from './core/services/seed.service';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }, {
-    provide: APP_INITIALIZER,
-    useFactory: (ss: SeedService) => () =>  ss.load(),
-    deps: [SeedService],
-    multi: true
-  }
+  }, 
+  // {
+  //   provide: APP_INITIALIZER,
+  //   useFactory: (ss: SeedService) => () =>  ss.seedAdmin(),
+  //   deps: [SeedService],
+  //   multi: true
+  // }
 ],
   bootstrap: [AppComponent]
 })

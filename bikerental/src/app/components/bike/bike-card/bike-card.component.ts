@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IBike } from '../../shared/models/IBike';
 
 @Component({
@@ -6,11 +6,6 @@ import { IBike } from '../../shared/models/IBike';
   templateUrl: './bike-card.component.html',
   styleUrls: ['./bike-card.component.css']
 })
-export class BikeCardComponent implements OnInit {
+export class BikeCardComponent {
   @Input() bike: IBike;
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

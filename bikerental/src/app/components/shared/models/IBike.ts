@@ -1,12 +1,15 @@
-import { ICoords } from './ICoords';
 import { PrivacyLevel } from './enums/PrivacyLevel';
+import { IAuthor } from './IAuthor';
 
 export interface IBike {
+    _id: string;
     name: string;
     description: string;
     imageUrl: string;
-    coords: ICoords;
+    latitude: number;
+    longitude: number;
     privacyLevel: PrivacyLevel;
-    author: string;
+    author: IAuthor;
     _acl: { creator: string };
+    _kmd: { lmt: string};
 }

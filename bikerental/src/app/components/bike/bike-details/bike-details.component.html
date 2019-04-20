@@ -1,3 +1,28 @@
-<p>
-  bike-details works!
-</p>
+<div class="container">
+    <div class="row space-top">
+      <div class="col-sm-4 offset-sm-2 extended">
+        <div class="card text-white bg-primary extended">
+          <h3 class="card-header">{{bike?.name}}</h3>
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <img src="{{bike?.imageUrl}}" />
+              <p>{{bike?.description}}</p>
+            </blockquote>
+          </div>
+          <div class="card-footer">
+            Posted on: {{bike?._kmd.lmt | date: 'fullDate'}}
+          </div>
+          <div class="card-footer">
+            Author: {{bike?.author?.name}}
+          </div>
+          <div class="pull-right">
+              <button class="btn btn-info btn-block" (click)="rentBike($event)" id="{{bike?._id}}">Rent</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 extended">
+        <app-google-map [lat]="bike?.latitude" [lng]="bike?.longitude"></app-google-map>
+      </div>
+    </div>
+  </div>
+  
