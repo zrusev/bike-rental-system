@@ -20,13 +20,15 @@ import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/authentication/signin/signin.component';
 import { SignupComponent } from './components/authentication/signup/signup.component';
 import { SeedService } from './core/services/seed.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,
@@ -42,13 +44,12 @@ import { SeedService } from './core/services/seed.service';
     ToastrModule.forRoot()
   ],
   providers: [SeedService, 
-  //   {
-  //   provide: APP_INITIALIZER,
-  //   useFactory: (ss: SeedService) => () =>  ss.seedAdmin(),
-  //   deps: [SeedService],
-  //   multi: true
-  // }, 
-  {
+    {
+    provide: APP_INITIALIZER,
+    useFactory: (ss: SeedService) => () =>  ss.seedAdmin(),
+    deps: [SeedService],
+    multi: true
+  }, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

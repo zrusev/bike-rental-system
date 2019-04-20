@@ -1,8 +1,10 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { BikeService } from 'src/app/core/services/bike.service';
-import { Observable } from 'rxjs';
 import { IBike } from '../shared/models/IBike';
+import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,8 @@ export class HomeComponent implements OnInit, DoCheck {
   username: string = '';
   latest$: Observable<IBike[]>;
   topRented$: Observable<IBike[]>;
+  latest: IBike[];
+  topRented: IBike[];
 
   constructor(
     private authService: AuthService,
@@ -23,6 +27,11 @@ export class HomeComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.latest$ = this.bikeService.getLatest();
     this.topRented$ = this.bikeService.getTopRented();
+
+    forkJoin(this.latest$, this.topRented$).subscribe(results => {
+      this.latest = results[0],
+      this.topRented = results[1];
+    });
   }
 
   ngDoCheck() {

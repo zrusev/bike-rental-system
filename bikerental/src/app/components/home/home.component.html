@@ -5,7 +5,7 @@
         <div class="col-sm-12">
           <h3 class="extended-top">LATEST ADDED</h3>
           <div class="row space-top" *ngIf="latest$">
-            <div class="col-sm-4 extended-top" *ngFor="let bike of (latest$ | async)">
+            <div class="col-sm-4 extended-top" *ngFor="let bike of (latest)">
               <app-bike-card [bike]="bike"></app-bike-card>
             </div>
           </div>
@@ -15,7 +15,7 @@
         <div class="col-sm-12">
             <h3 class="extended-top">TOP RENTED</h3>
             <div class="row space-top" *ngIf="topRented$">
-              <div class="col-sm-4 extended-top" *ngFor="let bike of (topRented$ | async)">
+              <div class="col-sm-4 extended-top" *ngFor="let bike of (topRented)">
                 <app-bike-card [bike]="bike"></app-bike-card>
               </div>
             </div>            

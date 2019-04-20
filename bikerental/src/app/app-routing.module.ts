@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { AuthorizedGuard } from './core/guards/authorized.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home'},
@@ -12,6 +13,7 @@ const routes: Routes = [
     canLoad: [AuthorizedGuard] },
   { path: 'admin', loadChildren: './components/admin/admin.module#AdminModule',
     canLoad: [AuthorizedGuard, AuthenticatedGuard] },
+  { path: 'profile', component: ProfileComponent},
   { path: '404', component: NotFoundComponent},
   { path: '**', redirectTo: '404'}
 ];
