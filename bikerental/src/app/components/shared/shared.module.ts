@@ -14,9 +14,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent,
 ],
     imports: [
-        CommonModule,
-        RouterModule
-    ],
+    CommonModule,
+    RouterModule
+],
     exports: [
     HeaderComponent,
     ContentComponent,

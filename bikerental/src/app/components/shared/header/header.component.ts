@@ -19,7 +19,7 @@ export class HeaderComponent implements DoCheck {
   ) { }
 
   ngDoCheck() {
-    this.username = localStorage.getItem('username');
+    this.username = this.authService.userName;
     this.isLoggedIn = this.authService.isAuthenticated();
   }
 

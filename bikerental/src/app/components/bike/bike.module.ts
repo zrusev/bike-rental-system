@@ -9,22 +9,22 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BikeAllComponent } from './bike-all/bike-all.component';
-import { BikeCardComponent } from './bike-card/bike-card.component';
 import { BikeCreateComponent } from './bike-create/bike-create.component';
 import { BikeRoutingModule } from './bike-routing.module';
 import { BikeDetailsComponent } from './bike-details/bike-details.component';
 import { GoogleMapComponent } from './bike-maps/google-map/google-map.component';
+import { BikeSharedModule } from '../shared/bike/bike-shared/bike-shared.module';
 
 @NgModule({
     declarations: [
         BikeCreateComponent,
         BikeDetailsComponent,
         GoogleMapComponent,
-        BikeAllComponent,
-        BikeCardComponent
+        BikeAllComponent
     ],
     imports: [
         CommonModule,
+        BikeSharedModule,
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,

@@ -9,6 +9,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
+import { BikeSharedModule } from './components/shared/bike/bike-shared/bike-shared.module';
 import { AdminModule } from './components/admin/admin.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
@@ -31,6 +32,7 @@ import { SeedService } from './core/services/seed.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    BikeSharedModule,
     AdminModule,
     FormsModule,
     BrowserModule,

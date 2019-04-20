@@ -1,7 +1,30 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4 offset-sm-8">
-      <div *ngIf="!isLoggedIn">
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="extended-top">LATEST ADDED</h3>
+          <div class="row space-top" *ngIf="latest$">
+            <div class="col-sm-4 extended-top" *ngFor="let bike of (latest$ | async)">
+              <app-bike-card [bike]="bike"></app-bike-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <h3 class="extended-top">TOP RENTED</h3>
+            <div class="row space-top" *ngIf="topRented$">
+              <div class="col-sm-4 extended-top" *ngFor="let bike of (topRented$ | async)">
+                <app-bike-card [bike]="bike"></app-bike-card>
+              </div>
+            </div>            
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 extended-top">
+      <div *ngIf="!isLoggedIn; else userdetails">
         <ngb-tabset>
           <ngb-tab>
             <ng-template ngbTabTitle><b>Sign in</b></ng-template>
@@ -17,7 +40,18 @@
           </ngb-tab>
         </ngb-tabset>
       </div>
+
+      <ng-template #userdetails>
+          <div class="jumbotron">
+              <h1 class="display-3">Hello, {{username}}!</h1>
+              <p class="lead">It's good to see you around.</p>
+              <hr class="my-4">
+              <p>Just rent a bike and have fun. Find all our bike.</p>
+              <p class="lead">
+                <a class="btn btn-primary btn-lg" [routerLink]="['/bikes/all']" role="button">Find more</a>
+              </p>
+            </div>
+      </ng-template>
     </div>
   </div>
 </div>
-<ng-http-loader></ng-http-loader>

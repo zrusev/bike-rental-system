@@ -10,6 +10,9 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
+  get userName() {
+    return localStorage.getItem('username');
+  }
   get token() {
     return localStorage.getItem('token');
   }

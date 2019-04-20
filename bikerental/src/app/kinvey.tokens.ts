@@ -8,3 +8,6 @@ export const BASE_USER_URL = `https://baas.kinvey.com/user/${APP_KEY}`;
 
 export const CREATE_BIKE_URL = `${BASE_URL}/bikes`;
 export const ALL_BIKES = `${BASE_URL}/bikes?query={"privacyLevel": "Public"}&sort={"_kmd.ect": -1}`;
+export const LATEST_BIKES = `${BASE_URL}/bikes?query={"privacyLevel": "Public"}&sort={"_kmd.ect": -1}&limit=3`;
+export const RENTED_BIKES = `${BASE_URL}/bikes?query={"privacyLevel": "Public", "isRented": true}&sort={"_kmd.ect": -1}&limit=3`;
+
