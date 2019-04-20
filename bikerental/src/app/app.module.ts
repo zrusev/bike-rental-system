@@ -9,7 +9,9 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
+import { AdminModule } from './components/admin/admin.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -29,6 +31,7 @@ import { SeedService } from './core/services/seed.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    AdminModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,17 +39,22 @@ import { SeedService } from './core/services/seed.service';
     NgHttpLoaderModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  providers: [SeedService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }, 
-  // {
+  providers: [SeedService, 
+  //   {
   //   provide: APP_INITIALIZER,
   //   useFactory: (ss: SeedService) => () =>  ss.seedAdmin(),
   //   deps: [SeedService],
   //   multi: true
-  // }
+  // }, 
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }
 ],
   bootstrap: [AppComponent]
 })

@@ -1,18 +1,18 @@
-import { Router, CanLoad, UrlSegment, Route } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Router, Route, UrlSegment, CanLoad } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanLoad {
+export class AuthenticatedGuard implements CanLoad {
     constructor(
         private authService: AuthService,
         private router: Router
     ) {}
 
     canLoad(route: Route, state: UrlSegment[]) {
-        if (this.authService.isAuthenticated()) {
+        if (this.authService.isAuthorized(route.path.toLowerCase())) {
             return true;
         }
 

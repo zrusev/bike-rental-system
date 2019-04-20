@@ -14,6 +14,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  get roles() {
+    return localStorage.getItem('roles');
+  }
+
   getUsers() {
     return this.http.get(BASE_USER_URL);
   }
@@ -34,9 +38,14 @@ export class AuthService {
     return this.token !== null;
   }
 
+  isAuthorized(role: string) {
+    return this.roles.toLowerCase().indexOf(role) > -1;
+  }
+
   saveUserInfo(res: Object) {
-    localStorage.setItem('username', res['username']);
-    localStorage.setItem('token', res['_kmd']['authtoken']);
     localStorage.setItem('userId', res['_id']);
+    localStorage.setItem('username', res['username']);
+    localStorage.setItem('roles', res['roles']);
+    localStorage.setItem('token', res['_kmd']['authtoken']);
   }
 }

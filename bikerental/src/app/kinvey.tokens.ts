@@ -7,4 +7,4 @@ export const BASE_URL = `https://baas.kinvey.com/appdata/${APP_KEY}`;
 export const BASE_USER_URL = `https://baas.kinvey.com/user/${APP_KEY}`;
 
 export const CREATE_BIKE_URL = `${BASE_URL}/bikes`;
-export const ALL_BIKES = `${BASE_URL}/bikes?query={}&sort={"_kmd.ect": -1}`;
+export const ALL_BIKES = `${BASE_URL}/bikes?query={"privacyLevel": "Public"}&sort={"_kmd.ect": -1}`;
