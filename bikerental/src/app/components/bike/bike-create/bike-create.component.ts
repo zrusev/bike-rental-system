@@ -41,7 +41,10 @@ export class BikeCreateComponent implements OnInit, DoCheck {
 
   createBike() {
     this.bikeService
-      .createBike(this.form.value)
+      .createBike(Object.assign(this.form.value, {
+        isRented: false,
+        rentedBy: ''
+      }))
       .subscribe(() => {
         this.toastr.success('Bike created successfully!', 'Success');
         this.router.navigate([ '/bikes/all' ]);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IBike } from '../../shared/models/IBike';
 import { BikeService } from 'src/app/core/services/bike.service';
-import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -12,10 +14,14 @@ import { tap } from 'rxjs/operators';
 export class BikeDetailsComponent implements OnInit {
   bike: IBike;
   bikeId: string;
+  isRented: boolean = false;
 
   constructor(
     private bikeService: BikeService,
+    private authService: AuthService,
     private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,10 +36,27 @@ export class BikeDetailsComponent implements OnInit {
       }))
       .subscribe((details) => {
         this.bike = details;
+        this.isRented = details.isRented;
       });
   }
 
   rentBike(event: any) {
-    console.log(event.target.id);
+    const bikeId: string = event.target.id;
+    const rentedBy: string = this.authService.userId;
+
+    this.bikeService
+      .getById(bikeId)
+      .pipe(tap((bike) => {
+        this.bikeService
+          .editBike(bikeId, Object.assign(bike, {
+            isRented: true,
+            rentedBy
+          }))
+          .subscribe((details: any) => {
+            this.toastr.success(`${details.name} rented successfully!`, 'Success');
+            this.router.navigate([ '/bikes/all' ]);
+          });
+      }))
+      .subscribe();
   }
 }

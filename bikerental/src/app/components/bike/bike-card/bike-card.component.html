@@ -3,6 +3,7 @@
   <div class="card-body">
     <blockquote class="card-blockquote">
       <img src="{{bike.imageUrl}}" />
+      <span class="centered" *ngIf="bike.isRented">RENTED</span>
       <p>{{bike.description | slice:0:20}}...</p>
       <div class="pull-right">
         <a [routerLink]="['/bikes/details/', bike._id]" class="btn btn-info">Details</a>

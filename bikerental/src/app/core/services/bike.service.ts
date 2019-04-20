@@ -27,4 +27,8 @@ export class BikeService {
   getAuthor(id: string) {
     return this.http.get<IAuthor>(BASE_USER_URL + `?query={"_id":"${id}"}`);
   }
+
+  editBike(id: string, body: Object) {
+    return this.http.put(CREATE_BIKE_URL + `/${id}`, body);
+  }
 }

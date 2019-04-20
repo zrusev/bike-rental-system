@@ -18,6 +18,10 @@ export class AuthService {
     return localStorage.getItem('roles');
   }
 
+  get userId() {
+    return localStorage.getItem('userId');
+  }
+
   getUsers() {
     return this.http.get(BASE_USER_URL);
   }

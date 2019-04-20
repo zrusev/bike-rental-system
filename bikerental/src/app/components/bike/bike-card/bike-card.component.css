@@ -1,7 +1,18 @@
 img {
-    width: 100%;
+  width: 100%;
 }
 
 .extended {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 36px;
+  text-emphasis: bold;
+  font-weight: bold;
 }

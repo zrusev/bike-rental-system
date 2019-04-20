@@ -6,6 +6,7 @@
           <div class="card-body">
             <blockquote class="card-blockquote">
               <img src="{{bike?.imageUrl}}" />
+              <span class="centered" *ngIf="isRented">RENTED</span>
               <p>{{bike?.description}}</p>
             </blockquote>
           </div>
@@ -15,7 +16,7 @@
           <div class="card-footer">
             Author: {{bike?.author?.name}}
           </div>
-          <div class="pull-right">
+          <div class="pull-right" *ngIf="!isRented">
               <button class="btn btn-info btn-block" (click)="rentBike($event)" id="{{bike?._id}}">Rent</button>
           </div>
         </div>

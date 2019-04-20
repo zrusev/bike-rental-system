@@ -12,4 +12,5 @@ export interface IBike {
     author: IAuthor;
     _acl: { creator: string };
     _kmd: { lmt: string};
+    isRented: boolean;
 }
