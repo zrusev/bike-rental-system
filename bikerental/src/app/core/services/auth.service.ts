@@ -46,7 +46,11 @@ export class AuthService {
   }
 
   isAuthorized(role: string) {
-    return this.roles.toLowerCase().indexOf(role) > -1;
+    if (!!this.roles) {
+      return this.roles.toLowerCase().indexOf(role.toLowerCase()) > -1;
+    }
+
+    return false;
   }
 
   saveUserInfo(res: Object) {

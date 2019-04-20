@@ -43,8 +43,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     NgHttpLoaderModule.forRoot(),
     ToastrModule.forRoot()
   ],
-  providers: [SeedService, 
-    {
+  providers: [SeedService, {
     provide: APP_INITIALIZER,
     useFactory: (ss: SeedService) => () =>  ss.seedAdmin(),
     deps: [SeedService],

@@ -1,3 +1,30 @@
-<p>
-  bike-delete works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Privacy</th>
+            <th scope="col">Rented</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let bike of (bikes$ | async); let i = index">
+            <tr class="table-primary">
+              <td>{{+i + 1}}</td>
+              <td>{{bike.name}}</td>
+              <td>{{bike.description}}</td>
+              <td>{{bike.privacyLevel}}</td>
+              <td>{{bike.isRented}}</td>
+              <td><button class="btn btn-danger" id="{{bike._id}}" (click)="deleteBike($event)">Delete</button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

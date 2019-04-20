@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent implements DoCheck {
   username: string = '';
   isLoggedIn: boolean;
+  isAdmin: boolean;
 
   constructor(
     private authService: AuthService,
@@ -21,6 +22,7 @@ export class HeaderComponent implements DoCheck {
   ngDoCheck() {
     this.username = this.authService.userName;
     this.isLoggedIn = this.authService.isAuthenticated();
+    this.isAdmin = this.authService.isAuthorized('Admin');
   }
 
   logout() {

@@ -12,7 +12,7 @@ export class AuthenticatedGuard implements CanLoad {
     ) {}
 
     canLoad(route: Route, state: UrlSegment[]) {
-        if (this.authService.isAuthorized(route.path.toLowerCase())) {
+        if (this.authService.isAuthorized(route.path)) {
             return true;
         }
 

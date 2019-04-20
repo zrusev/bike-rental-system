@@ -14,6 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         if(req.url.endsWith('&limit=3') ||
             req.method === "PUT" ||
+            req.method === "DELETE" ||
             (req.method === 'GET' && req.url.endsWith(`/user/${APP_KEY}`))) {
                 req = req.clone({
                     setHeaders: {

@@ -43,4 +43,8 @@ export class BikeService {
   editBike(id: string, body: Object) {
     return this.http.put(CREATE_BIKE_URL + `/${id}`, body);
   }
+
+  deleteBike(id: string) {
+    return this.http.delete(CREATE_BIKE_URL + `/${id}`);
+  }
 }
