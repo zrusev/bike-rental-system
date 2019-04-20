@@ -1,54 +1,114 @@
 <div class="container">
-  <div class="row">
-    
-    <form [formGroup]="form" (submit)="createBike()">
-
+    <div class="row">
+      <form [formGroup]="form" (submit)="createBike()">
         <fieldset>
           <legend>Add new bicycle</legend>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name"
-              formControlName="name">
-            <small id="emailHelp" class="form-text text-muted">Enter full bicycle title</small>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="name" 
+              aria-describedby="nameHelp" 
+              placeholder="Enter name"
+              formControlName="name"
+            >
+            <small id="nameHelp" class="form-text text-muted">Enter full bicycle title</small>
+          </div>
+          <div class="alert alert-danger" *ngIf="f.name.touched && f.name.errors?.required">
+              Name is required!
+          </div>
+          <div class="alert alert-danger" *ngIf="f.name.touched && f.name.errors?.minlength">
+              Name should have minimum 6 characters!
+          </div>
+          <div class="alert alert-danger" *ngIf="f.name.touched && f.name.errors?.maxlength">
+              Name should have minimum 20 characters!
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Enter description" formControlName="description"></textarea>
+            <textarea 
+              class="form-control" 
+              id="description" 
+              rows="3" 
+              placeholder="Enter description"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="alert alert-danger" *ngIf="f.description.touched && f.description.errors?.required">
+              Minimum length: 10 characters!
           </div>
           <div class="form-group">
             <label for="imageUrl">Image URL</label>
-            <input class="form-control" id="imageUrl" placeholder="Enter image url" formControlName="imageUrl">
+            <input 
+              class="form-control" 
+              id="imageUrl" 
+              placeholder="Enter image url" 
+              formControlName="imageUrl"
+            >
+          </div>
+          <div class="alert alert-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.required">
+              Image URL is required!
+          </div>
+          <div class="alert alert-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.pattern">
+              Image URL should end with .jpg, .jpeg, .png or .gif!
           </div>
           <div class="form-group">
             <label>Privacy Level</label>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" formControlName="privacyLevel" id="optionsRadios1"
-                  value="Public" checked>
+                <input 
+                  type="radio" 
+                  class="form-check-input" 
+                  formControlName="privacyLevel" 
+                  id="optionsRadios1"
+                  value="Public"
+                >
                 Public
               </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" formControlName="privacyLevel" id="optionsRadios2"
-                  value="Private">
+                <input 
+                  type="radio" 
+                  class="form-check-input" 
+                  formControlName="privacyLevel" 
+                  id="optionsRadios2"
+                  value="Private"
+                >
                 Private
               </label>
             </div>
           </div>
+          <div class="alert alert-danger" *ngIf="f.privacyLevel.touched && f.privacyLevel.errors?.required">
+              Privacy level is required!
+          </div>
         </fieldset>
-
         <fieldset>
+          <legend>Bicycle pick up point</legend>
           <div class="form-group">
             <label>Latitude</label>
-            <input type="number" value="{{coordinates?.lat}}" formControlName="latitude">
+            <input 
+              type="text" 
+              value="{{coordinates?.lat}}" 
+              formControlName="latitude"
+            >
+            <div class="alert alert-danger" *ngIf="f.latitude.touched && f.latitude.errors?.pattern">
+                Latitude should be a decimal number!
+            </div>
             <label>Longitude</label>
-            <input type="number" value="{{coordinates?.lng}}" formControlName="longitude">
+            <input 
+              type="text" 
+              value="{{coordinates?.lng}}" 
+              formControlName="longitude"
+            >
+            <div class="alert alert-danger" *ngIf="f.longitude.touched && f.longitude.errors?.pattern">
+              Longitude should be a decimal number!
+            </div>
             <app-google-map (markerClicked)="onMarked($event)"></app-google-map>
+            <small id="markerHelp" class="form-text text-muted">Click on map to select position</small>          
           </div>
-          <button class="btn btn-primary">Create</button>
+          <button class="btn btn-primary btn-block" [disabled]="!form.valid">Create</button>
         </fieldset>
       </form>
-
+    </div>
   </div>
-</div>
