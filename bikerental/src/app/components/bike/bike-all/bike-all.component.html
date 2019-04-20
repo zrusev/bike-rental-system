@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row space-top">
+    <div class="col-md-12">
+      <h1>Bike Rental System</h1>
+      <p>Pick up your favourite bike</p>
+    </div>
+  </div>
+  <div class="row space-top" *ngIf="bikes$; else loading">
+    <div class="col-md-4" *ngFor="let bike of (bikes$ | async)">
+      <app-bike-card [bike]="bike"></app-bike-card>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4" text-center>
+        <h1>Loading...</h1>
+      </div>
+    </div>
+  </ng-template>
+</div>

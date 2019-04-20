@@ -1,6 +1,9 @@
 import { Component, OnInit,  DoCheck } from '@angular/core';
-import { ICoords } from '../../shared/models/ICoords';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BikeService } from 'src/app/core/services/bike.service';
+import { ToastrService } from 'ngx-toastr';
+import { ICoords } from '../../shared/models/ICoords';
 
 @Component({
   selector: 'app-bike-create',
@@ -11,7 +14,12 @@ export class BikeCreateComponent implements OnInit, DoCheck {
   coordinates: ICoords = {lat: 42.6978634, lng: 23.3221789};
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private bikeService: BikeService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -29,11 +37,16 @@ export class BikeCreateComponent implements OnInit, DoCheck {
     this.form.controls['longitude'].setValue(this.coordinates.lng);
   }
 
+  onMarked(coords: ICoords) { this.coordinates = coords; }
+
   createBike() {
-    console.log(this.form);
+    this.bikeService
+      .createBike(this.form.value)
+      .subscribe(() => {
+        this.toastr.success('Bike created successfully!', 'Success');
+        this.router.navigate([ '/bikes/all' ]);
+      });
   }
 
   get f() { return this.form.controls; }
-
-  onMarked(coords: ICoords) { this.coordinates = coords; }
 }

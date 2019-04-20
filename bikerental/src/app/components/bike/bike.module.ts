@@ -8,12 +8,16 @@ import { BikeDetailsComponent } from './bike-details/bike-details.component';
 import { GoogleMapComponent } from './bike-maps/google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { API_MAPS_KEY } from 'src/app/kinvey.tokens';
+import { BikeAllComponent } from './bike-all/bike-all.component';
+import { BikeCardComponent } from './bike-card/bike-card.component';
 
 @NgModule({
     declarations: [
         BikeCreateComponent,
         BikeDetailsComponent,
-        GoogleMapComponent
+        GoogleMapComponent,
+        BikeAllComponent,
+        BikeCardComponent
     ],
     imports: [
         CommonModule,

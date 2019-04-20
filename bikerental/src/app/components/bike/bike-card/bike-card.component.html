@@ -1,0 +1,12 @@
+<div class="card text-white bg-primary extended">
+  <h3 class="card-header">{{bike.name}}</h3>
+  <div class="card-body">
+    <blockquote class="card-blockquote">
+      <img src="{{bike.imageUrl}}" />
+      <p>{{bike.description | slice:0:20}}...</p>
+      <div class="pull-right">
+        <a [routerLink]="['/furniture/details/', bike._id]" class="btn btn-info">Details</a>
+      </div>
+    </blockquote>
+  </div>
+</div>

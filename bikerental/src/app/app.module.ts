@@ -42,7 +42,8 @@ import { SeedService } from './core/services/seed.service';
     useFactory: (ss: SeedService) => () =>  ss.load(),
     deps: [SeedService],
     multi: true
-  }],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
