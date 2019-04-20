@@ -1,19 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { APP_INITIALIZER } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
-import { SharedModule } from './components/shared/shared.module';
+import { APP_INITIALIZER } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './components/shared/shared.module';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
+import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/authentication/signin/signin.component';
 import { SignupComponent } from './components/authentication/signup/signup.component';
-import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './components/home/home.component';
 import { SeedService } from './core/services/seed.service';
 
 @NgModule({
@@ -31,6 +33,7 @@ import { SeedService } from './core/services/seed.service';
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgHttpLoaderModule.forRoot(),
     ToastrModule.forRoot()
   ],
   providers: [SeedService, {
