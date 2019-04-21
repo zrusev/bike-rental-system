@@ -25,6 +25,11 @@ export class BikeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate([ '/home' ]);
+      return;
+    }
+
     this.bikeId = this.route.snapshot.params['id'];
 
     this.bikeService

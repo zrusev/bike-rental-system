@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 401) {
                         this.toastrService.error(err.error.description, 'Error');
-                        this.router.navigate([ '/login' ]);
+                        this.router.navigate([ '/home' ]);
                     }
 
                     return throwError(err);
