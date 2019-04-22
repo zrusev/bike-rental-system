@@ -25,6 +25,10 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
+  getUser(id: string) {
+    return this.http.get(BASE_USER_URL + `/${id}`);
+  }
+
   getUsers() {
     return this.http.get(BASE_USER_URL);
   }
